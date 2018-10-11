@@ -6,7 +6,7 @@ android:
       - platform-tools
       - build-tools-28.0.0
       - android-28
-      - android-22
+      - android-22 #for the emulator
       - extra-google-google_play_services
       - extra-google-m2repository
       - extra-android-m2repository
@@ -14,19 +14,19 @@ android:
       - sys-img-armeabi-v7a-android-22
 
 # magic for launching an emulator for running the tests
+# although I managed to make it work, despite what the documents say
+# Warning: At the moment, these steps are not fully supported by Travis CI Android builder.
 before_script:
     - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a -c 32M
     - emulator -avd test -no-audio -no-window &
     - android-wait-for-emulator
-    #try without sleeping
-#    - sleep 180
     - adb devices
     - adb shell input keyevent 82 &
 # what commands should we run
 script:
-- ./gradlew build
-- ./gradlew connectedCheck
-- ./gradlew test
+- ./gradlew build #build it
+- ./gradlew connectedCheck #run tests in androidTest folder
+- ./gradlew testDebugUnitTest #run unit tests
 before_install:
 #prevents a validation error for licenses
   - yes | sdkmanager "platforms;android-27"
