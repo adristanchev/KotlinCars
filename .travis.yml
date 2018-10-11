@@ -27,6 +27,7 @@ script:
 - ./gradlew build
 - ./gradlew assembleDebug
 - ./gradlew assembleDebugAndroidTest
+- ./gradlew build connectedCheck
 before_install:
 #prevents a validation error
   - yes | sdkmanager "platforms;android-27"
