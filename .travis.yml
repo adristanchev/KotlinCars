@@ -24,6 +24,7 @@ before_script:
 script:
      - ./gradlew build checkstyle connectedCheck -PdisablePreDex
 before_install:
+  - yes | sdkmanager "platforms;android-28"
   - chmod +x gradlew
 branches:
         only:
