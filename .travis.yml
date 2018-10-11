@@ -1,4 +1,4 @@
-language: java
+language: android
 jdk:
   - oraclejdk8
 components:
@@ -6,4 +6,6 @@ components:
     - platform-tools
     - tools
     - android-28
+    before_install:
+    - chmod +x gradlew
 
