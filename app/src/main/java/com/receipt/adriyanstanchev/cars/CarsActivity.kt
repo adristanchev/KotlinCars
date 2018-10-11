@@ -24,6 +24,9 @@ class CarsActivity : AppCompatActivity() {
 //        BottomAppBar
 //        MaterialButton
 //        MaterialCardView
+//        MaterialCardView
+//        MaterialCardView
+//        MaterialCardView
 
         Log.d("asd", "travis test build?")
         Log.d("asd", "travis test build?")
