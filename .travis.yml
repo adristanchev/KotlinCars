@@ -1,3 +1,4 @@
+os: osx
 language: android
 jdk:
   - oraclejdk8

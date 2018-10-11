@@ -26,6 +26,9 @@ class CarsActivity : AppCompatActivity() {
 //        MaterialCardView
 
         Log.d("asd", "travis test build?")
+        Log.d("asd", "travis test build?")
+        Log.d("asd", "travis test build?")
+        Log.d("asd", "travis test build?")
         setupRecyclerView()
         setupOnFabClick()
     }
