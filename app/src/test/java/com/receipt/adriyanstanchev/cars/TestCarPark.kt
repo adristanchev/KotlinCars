@@ -1,17 +1,16 @@
 package com.receipt.adriyanstanchev.cars
 
 import org.amshove.kluent.shouldEqual
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
+import org.junit.Test
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestCarPark {
 
     private val carOne = "carOne"
     private val carTwo = "carTwo"
 
 
-    @Test fun `test add item to list`() {
+    @Test
+    fun `test add item to list`() {
         val carPark = CarPark()
         carPark.addCar(carOne)
         carPark.addCar(carTwo)
