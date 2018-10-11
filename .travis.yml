@@ -1,26 +1,34 @@
 language: android
+env:
+  global:
+  - ANDROID_API_LEVEL=28
+  - ANDROID_BUILD_TOOLS_VERSION=28.0.0
+  - ANDROID_EMU_API_LEVEL=28
+  - ANDROID_ABI=armeabi-v7a
+  - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
+  - QEMU_AUDIO_DRV=none # Remove audio
 android:
         components:
                 - tools
                 - platform-tools
-                - build-tools-28.0.0
+                - build-tools-$ANDROID_BUILD_TOOLS_VERSION
                 - extra-android-support
-                - android-28
+                - android-$ANDROID_API_LEVEL
                 - extra-google-m2repository
                 - extra-android-m2repository
                  # Specify at least one system image,
                  # if you need to run emulator(s) during your tests
-                - sys-img-armeabi-v7a-android-28
+                - sys-img-$ANDROID_ABI-google_apis-$ANDROID_EMU_API_LEVEL
 before_script:
-  - echo no | android create avd --force -n test -t android-28 --abi armeabi-v7a
-  - emulator -avd test -no-audio -no-window &
+  - echo no | android create avd --force -n test -t android-$ANDROID_EMU_API_LEVEL --abi google_apis/$ANDROID_ABI
+  - emulator -avd test -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
 script:
-    - gradle build connectedCheck
+  - gradle build connectedCheck
 before_install:
-    - chmod +x gradlew
+  - chmod +x gradlew
 branches:
         only:
                 - master
