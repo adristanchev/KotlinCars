@@ -29,6 +29,9 @@ class CarsActivity : AppCompatActivity() {
         Log.d("asd", "travis test build?")
         Log.d("asd", "travis test build?")
         Log.d("asd", "travis test build?")
+        Log.d("asd", "travis test build?")
+        Log.d("asd", "travis test build?")
+        Log.d("asd", "travis test build?")
         setupRecyclerView()
         setupOnFabClick()
     }
