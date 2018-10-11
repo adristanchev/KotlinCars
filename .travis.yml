@@ -25,9 +25,8 @@ before_script:
 # what commands should we run
 script:
 - ./gradlew build
-- ./gradlew assembleDebug
-- ./gradlew assembleDebugAndroidTest
-- ./gradlew build connectedCheck
+- ./gradlew connectedCheck
+- ./gradlew test
 before_install:
 #prevents a validation error for licenses
   - yes | sdkmanager "platforms;android-27"
