@@ -1,6 +1,5 @@
 language: android
-
-  android:
+android:
     components:
       - tools
       - platform-tools
@@ -14,7 +13,7 @@ language: android
       - sys-img-armeabi-v7a-android-22
 
 # magic for launching an emulator for running the tests
-  before_script:
+before_script:
     - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a -c 32M
     - emulator -avd test -no-audio -no-window &
     - android-wait-for-emulator
@@ -22,31 +21,8 @@ language: android
     - adb devices
     - adb shell input keyevent 82 &
 # what commands should we run
-  script:
+script:
      - ./gradlew build checkstyle connectedCheck -PdisablePreDex
-#android:
-#        components:
-#                - tools
-#                - platform-tools
-#                - build-tools-$ANDROID_BUILD_TOOLS_VERSION
-#                - extra-android-support
-#                - android-$ANDROID_API_LEVEL
-#                - extra-google-m2repository
-#                - extra-android-m2repository
-#                 # Specify at least one system image,
-#                 # if you need to run emulator(s) during your tests
-#                - sys-img-$ANDROID_ABI-google_apis-$ANDROID_EMU_API_LEVEL
-#before_script:
-#  - echo no | android create avd --force -n test -t android-$ANDROID_EMU_API_LEVEL --abi google_apis/$ANDROID_ABI
-#  - emulator -avd test -no-window &
-#  - android-wait-for-emulator
-#  - adb shell input keyevent 82 &
-#
-#script:
-#  - ./gradlew clean installDebug
-#  - ./gradlew check
-#  - ./gradlew testDebugUnitTest
-#  - ./gradlew connectedDebugAndroidTest
 before_install:
   - chmod +x gradlew
 branches:
