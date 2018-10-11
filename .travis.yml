@@ -1,12 +1,14 @@
-os: osx
+install: gradle wrapper --gradle-version 4.2
 language: android
 jdk:
   - oraclejdk8
+  - oraclejdk7
+  - openjdk7
 components:
-    - tools
-    - platform-tools
-    - tools
-    - android-28
-    before_install:
-    - chmod +x gradlew
+  - platform-tools
+  - tools
+  - build-tools-24.0.2
+
+before_install:
+  - chmod +x gradlew
 
