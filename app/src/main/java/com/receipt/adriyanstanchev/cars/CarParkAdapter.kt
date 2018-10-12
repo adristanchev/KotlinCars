@@ -11,13 +11,26 @@ class CarParkAdapter(val carPark: CarPark, private val context: Context, val onI
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CarViewHolder {
-        return CarViewHolder(TextView(context))
+        val result: View
+        if(p1 == 0) {
+            result = LayoutInflater.from(context).inflate(R.layout.item_car, p0, false)
+        } else {
+            result = LayoutInflater.from(context).inflate(R.layout.item_two, p0, false)
+        }
+        return CarViewHolder(result)
     }
 
     override fun getItemCount(): Int = carPark.size()
 
     override fun onBindViewHolder(p0: CarViewHolder, p1: Int) {
-        p0.bind(carPark.getCar(p1), p1)
+//        p0.bind(carPark.getCar(p1), p1)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if(position%2 == 0)
+            1
+        else
+            0
     }
 
     fun addCar(s: String) {
@@ -37,9 +50,6 @@ class CarParkAdapter(val carPark: CarPark, private val context: Context, val onI
 
 
         fun bind(car: String, position: Int) {
-            val carTextView = itemView as TextView
-            carTextView.text = car
-            carTextView.setOnClickListener { onItemDeleted(position) }
         }
     }
 
