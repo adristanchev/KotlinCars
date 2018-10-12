@@ -4,14 +4,15 @@ android:
     components:
       - tools
       - platform-tools
+      - tools #Note that the tools section appears twice on purpose as it’s required to get the newest Android SDK tools.
       - build-tools-28.0.0
       - android-28
       - android-22 #for the emulator
       - extra-google-google_play_services
       - extra-google-m2repository
       - extra-android-m2repository
-      # we need the system image here if we are going to run an emulator later
-      - sys-img-armeabi-v7a-android-22
+      - sys-img-armeabi-v7a-android-22  # we need the system image here if we are going to run an emulator later
+
 
 # magic for launching an emulator for running the tests
 # although I managed to make it work, despite what the documents say
@@ -28,14 +29,9 @@ script:
 - ./gradlew connectedCheck #run tests in androidTest folder
 #- ./gradlew check #run unit tests
 before_install:
-#prevents a validation error for licenses
-  - yes | sdkmanager "platforms;android-27"
-  - chmod +x gradlew
+  - yes | sdkmanager "platforms;android-27" #prevents a validation error for accepting licenses
+  - chmod +x gradlew #sets gradlew as executable, fails otherwise
 branches:
-        only:
-                - master
-cache:
-        directories:
-                    # Android SDK
-                    - $HOME/android-sdk-dl
-                    - $HOME/android-sdk
+    only:
+        - master
+        - develop
